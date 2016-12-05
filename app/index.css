@@ -1,0 +1,711 @@
+html, body {
+  width: 100%;
+  height: 100%;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  font-family: 'Lato', sans-serif;
+  color: #18425a;
+}
+
+body.no-scroll {
+  overflow: hidden;
+}
+
+#content {
+  width: 100%;
+  background: white;
+  overflow: hidden;
+
+  -webkit-transition: transform .01s ease-out;
+  transition: transform .01s ease-out;
+}
+
+#content.hidden {
+  display: none;
+}
+
+.opening-banner-wrapper {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  max-height: 100%;
+  background: #000d22;
+  overflow: hidden;
+}
+
+.opening-banner {
+  z-index: 1;
+  width: 100%;
+  height: 100%;
+/*  background: url(http://dan.christine.wedding/opening.banner.jpg) no-repeat center center;*/
+  background: url(opening.banner.jpg) no-repeat center center;
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+  opacity: 0;
+
+  -webkit-transition: opacity 4s ease-out;
+  transition: opacity 4s ease-out;
+}
+
+.opening-banner.fade-in {
+  opacity: 1;
+}
+
+.opening-banner-text {
+  z-index: 10;
+  position: absolute;
+  pointer-events: none;
+  width: 100%;
+
+  -webkit-transition: transform .01s ease-out;
+  transition: transform .01s ease-out;
+}
+
+.letter-head {
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+}
+
+.letter-head img {
+  position: absolute;
+}
+
+#preloader {
+  position: absolute;
+  pointer-events: none;
+  opacity: 0;
+  z-index: 100;
+  -webkit-transition: opacity .5s ease-out;
+  transition: opacity .5s ease-out;
+}
+
+#preloader.show {
+  opacity: 1;
+}
+
+#preloader.hidden {
+  opacity: 0;
+}
+
+.sk-folding-cube {
+  margin: 20px auto;
+  width: 40px;
+  height: 40px;
+  position: relative;
+  -webkit-transform: rotateZ(45deg);
+          transform: rotateZ(45deg);
+}
+
+.sk-folding-cube .sk-cube {
+  float: left;
+  width: 50%;
+  height: 50%;
+  position: relative;
+  -webkit-transform: scale(1.1);
+      -ms-transform: scale(1.1);
+          transform: scale(1.1);
+}
+.sk-folding-cube .sk-cube:before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: white;
+  -webkit-animation: sk-foldCubeAngle 2.4s infinite linear both;
+          animation: sk-foldCubeAngle 2.4s infinite linear both;
+  -webkit-transform-origin: 100% 100%;
+      -ms-transform-origin: 100% 100%;
+          transform-origin: 100% 100%;
+}
+.sk-folding-cube .sk-cube2 {
+  -webkit-transform: scale(1.1) rotateZ(90deg);
+          transform: scale(1.1) rotateZ(90deg);
+}
+.sk-folding-cube .sk-cube3 {
+  -webkit-transform: scale(1.1) rotateZ(180deg);
+          transform: scale(1.1) rotateZ(180deg);
+}
+.sk-folding-cube .sk-cube4 {
+  -webkit-transform: scale(1.1) rotateZ(270deg);
+          transform: scale(1.1) rotateZ(270deg);
+}
+.sk-folding-cube .sk-cube2:before {
+  -webkit-animation-delay: 0.3s;
+          animation-delay: 0.3s;
+}
+.sk-folding-cube .sk-cube3:before {
+  -webkit-animation-delay: 0.6s;
+          animation-delay: 0.6s;
+}
+.sk-folding-cube .sk-cube4:before {
+  -webkit-animation-delay: 0.9s;
+          animation-delay: 0.9s;
+}
+@-webkit-keyframes sk-foldCubeAngle {
+  0%, 10% {
+    -webkit-transform: perspective(140px) rotateX(-180deg);
+            transform: perspective(140px) rotateX(-180deg);
+    opacity: 0;
+  } 25%, 75% {
+    -webkit-transform: perspective(140px) rotateX(0deg);
+            transform: perspective(140px) rotateX(0deg);
+    opacity: 1;
+  } 90%, 100% {
+    -webkit-transform: perspective(140px) rotateY(180deg);
+            transform: perspective(140px) rotateY(180deg);
+    opacity: 0;
+  }
+}
+
+@keyframes sk-foldCubeAngle {
+  0%, 10% {
+    -webkit-transform: perspective(140px) rotateX(-180deg);
+            transform: perspective(140px) rotateX(-180deg);
+    opacity: 0;
+  } 25%, 75% {
+    -webkit-transform: perspective(140px) rotateX(0deg);
+            transform: perspective(140px) rotateX(0deg);
+    opacity: 1;
+  } 90%, 100% {
+    -webkit-transform: perspective(140px) rotateY(180deg);
+            transform: perspective(140px) rotateY(180deg);
+    opacity: 0;
+  }
+}
+
+.wedding-details {
+  position: relative;
+  width: 100%;
+}
+
+.wedding-details-wrapper {
+  position: relative;
+  width: 100%;
+  margin: 0 auto;
+  padding: 124px 0;
+  background: white;
+}
+
+.wedding-details-wrapper__with-separator:before {
+  content: '· · ·';
+  position: absolute;
+  top: -5px;
+  width: 100%;
+  color: #eff1f2;
+  font-size: 50pt;
+  text-align: center;
+  line-height: 0;
+}
+
+.wedding-details-heading {
+  padding-bottom: 32px;
+  font-size: 40pt;
+  font-weight: 400;
+  text-align: center;
+
+  transform: translateY(50px);
+  opacity: 0;
+
+  -webkit-transition: transform .5s ease-out, opacity .5s ease-out;
+  transition: transform .5s ease-out, opacity .5s ease-out;
+}
+
+.wedding-details-narrative {
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 0 16px;
+  padding-bottom: 32px;
+  font-size: 14pt;
+  font-weight: 300;
+  line-height: 20pt;
+  text-align: justify;
+}
+
+.wedding-details-wrapper.visible .wedding-details-heading {
+  transform: translateY(0);
+  opacity: 1;
+}
+
+.wedding-details-when {
+  display: inline-flex;
+  width: 100%;
+  margin-bottom: 16px;
+  justify-content: center;
+  align-items: center;
+}
+
+.when-month {
+  min-width: 63px;
+  font-size: 20pt;
+  font-weight: 300;
+  margin-right: 16px;
+  opacity: 0;
+  transform: translateX(-50px) translateY(50px);
+  -webkit-transition: transform .5s ease-out, opacity .5s ease-out;
+  transition: transform .5s ease-out, opacity .5s ease-out;
+  -webkit-transition-delay: .5s; /* Safari */
+  transition-delay: .5s;
+}
+
+.when-day {
+  font-size: 70pt;
+  font-weight: 600;
+  color: #3d7da3;
+  line-height: 60pt;
+  opacity: 0;
+  transform: translateY(50px);
+  -webkit-transition: transform .5s ease-out, opacity .5s ease-out;
+  transition: transform .5s ease-out, opacity .5s ease-out;
+  -webkit-transition-delay: .5s; /* Safari */
+  transition-delay: .5s;
+}
+
+.when-year {
+  min-width: 63px;
+  font-size: 20pt;
+  font-weight: 300;
+  margin-left: 20px;
+  opacity: 0;
+  transform: translateX(50px) translateY(50px);
+  -webkit-transition: transform .5s ease-out, opacity .5s ease-out;
+  transition: transform .5s ease-out, opacity .5s ease-out;
+  -webkit-transition-delay: .5s; /* Safari */
+  transition-delay: .5s;
+}
+
+.wedding-details-wrapper.visible .when-month,
+.wedding-details-wrapper.visible .when-day,
+.wedding-details-wrapper.visible .when-year {
+  opacity: 1;
+  transform: translate(0);
+}
+
+.wedding-details-ceremony {
+  display: inline-flex;
+  width: 100%;
+  margin-bottom: 32px;
+  padding-left: 8px;
+  justify-content: center;
+  align-items: flex-end;
+  opacity: 0;
+  transform: translateY(50px) scale(1.05);
+  -webkit-transition: transform .5s ease-out, opacity .5s ease-out;
+  transition: transform .5s ease-out, opacity .5s ease-out;
+  -webkit-transition-delay: 1s; /* Safari */
+  transition-delay: 1s;
+}
+
+.wedding-details-wrapper.visible .wedding-details-ceremony {
+  opacity: 1;
+  transform: translate(0) scale(1);
+}
+
+.church-icon {
+  height: 100px;
+}
+
+.ceremony-content {
+  margin-left: -16px;
+  width: 480px;
+}
+
+.ceremony-details {
+  color: #3d7da3;
+  font-size: 16pt;
+  line-height: 16pt;
+}
+
+.ceremony-heading {
+  font-size: 32pt;
+  line-height: 36pt;
+}
+
+.wedding-details-reception {
+  display: inline-flex;
+  width: 100%;
+  margin-bottom: 24px;
+  padding-left: 8px;
+  justify-content: center;
+  align-items: flex-end;
+  opacity: 0;
+  transform: translateY(50px) scale(1.05);
+  -webkit-transition: transform .5s ease-out, opacity .5s ease-out;
+  transition: transform .5s ease-out, opacity .5s ease-out;
+  -webkit-transition-delay: 1.5s; /* Safari */
+  transition-delay: 1.5s;
+}
+
+.wedding-details-wrapper.visible .wedding-details-reception {
+  opacity: 1;
+  transform: translate(0) scale(1);
+}
+
+.reception-content {
+  width: 480px;
+}
+
+.reception-details {
+  color: #3d7da3;
+  font-size: 16pt;
+  line-height: 20pt;
+}
+
+.reception-heading {
+  font-size: 32pt;
+  line-height: 32pt;
+}
+
+.hotel-icon {
+  height: 100px;
+  margin-left: -20px;
+  margin-right: 4px;
+}
+
+.disco-ball-fill .disco {
+  fill: #fff;
+}
+
+.hotel-icon .star {
+  opacity: 0;
+}
+
+.hotel-icon .star-4 {
+  opacity: 1;
+}
+
+.disco.disco-1-1 { fill: #9bacb6; }
+.disco.disco-1-2 { fill: #d9dcd6; }
+.disco.disco-1-3 { fill: #9bacb6; }
+.disco.disco-1-2 { fill: #d9dcd6; }
+.disco.disco-1-5 { fill: #9bacb6; }
+
+.disco.disco-2-1 { fill: #d9dcd6; }
+.disco.disco-2-2 { fill: #9bacb6; }
+.disco.disco-2-3 { fill: #d9dcd6; }
+.disco.disco-2-2 { fill: #9bacb6; }
+.disco.disco-2-5 { fill: #d9dcd6; }
+
+.disco.disco-3-1 { fill: #9bacb6; }
+.disco.disco-3-2 { fill: #d9dcd6; }
+.disco.disco-3-3 { fill: #9bacb6; }
+.disco.disco-3-2 { fill: #d9dcd6; }
+.disco.disco-3-5 { fill: #9bacb6; }
+
+.disco.disco-4-1 { fill: #d9dcd6; }
+.disco.disco-4-2 { fill: #9bacb6; }
+.disco.disco-4-3 { fill: #d9dcd6; }
+.disco.disco-4-2 { fill: #9bacb6; }
+.disco.disco-4-5 { fill: #d9dcd6; }
+
+.disco.disco-5-1 { fill: #9bacb6; }
+.disco.disco-5-2 { fill: #d9dcd6; }
+.disco.disco-5-3 { fill: #9bacb6; }
+.disco.disco-5-2 { fill: #d9dcd6; }
+.disco.disco-5-5 { fill: #9bacb6; }
+
+#gmap {
+  width: 100%;
+  height: 100%;
+  opacity: 0;
+  transform: scale(0.85);
+
+  -webkit-transition: transform .5s ease-out, opacity .5s ease-out;
+  transition: transform .5s ease-out, opacity .5s ease-out;
+}
+
+#gmap.visible {
+  opacity: 1;
+  transform: scale(1);
+}
+
+.gmap-infowindow {
+  font-size: 14pt;
+}
+
+.gmap-wrapper {
+  position: relative;
+  height: 600px;
+  -webkit-transition: transform .25s ease-out;
+  transition: transform .25s ease-out;
+}
+
+.gmap-overlay {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  background: white;
+  z-index: 10;
+  opacity: 0;
+
+  -webkit-transition: opacity .25s ease-out;
+  transition: opacity .25s ease-out;
+}
+
+.gmap-wrapper:hover:not(.expanded) {
+  transform: scale(1.01);
+}
+
+.gmap-wrapper:hover .gmap-overlay {
+  opacity: .5;
+  cursor: pointer;
+}
+
+.gmap-overlay-text {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  z-index: 10;
+  opacity: 0;
+  opacity: 0;
+  font-size: 64pt;
+  text-align: center;
+  line-height: 600px;
+  letter-spacing: -3pt;
+  transform: scale(0.9);
+
+  -webkit-transition: opacity .25s ease-in-out, transform .15s ease-in-out;
+  transition: opacity .25s ease-in-out, transform .15s ease-in-out;
+}
+
+.gmap-wrapper:hover .gmap-overlay-text {
+  opacity: 1;
+  transform: scale(1);
+  cursor: pointer;
+}
+
+.gmap-content {
+  display: none;
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 300px;
+  height: 100%;
+  background: white;
+  z-index: 2;
+  box-shadow: -4px 0 20px rgba(0, 0, 0, 0.25);
+}
+
+.gmap-expanded-close {
+  position: absolute;
+  top: 0;
+  width: 100%;
+  margin: 16px auto;
+  text-align: center;
+}
+
+.gmap-wrapper.expanded {
+  height: 100%;
+}
+
+.gmap-wrapper.expanded .gmap-overlay,
+.gmap-wrapper.expanded .gmap-overlay-text {
+  display: none;
+}
+
+.gmap-wrapper.expanded .gmap-content {
+  display: block;
+}
+
+.gmap-wrapper.expanded #gmap {
+}
+
+.nav {
+  z-index: 5;
+  position: absolute;
+  top: 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: top;
+}
+
+.nav-header {
+  padding: 16px 24px;
+  color: #9bacb6;
+  font-size: 16pt;
+  -webkit-transition: opacity .1s ease-in-out;
+  transition: opacity .1s ease-in-out;
+}
+
+.nav-elems {
+  opacity: 0;
+  -webkit-transition: opacity .1s ease-in-out;
+  transition: opacity .1s ease-in-out;
+}
+
+.nav-elems:hover .nav-elem {
+}
+
+.nav-elem {
+  position: relative;
+  width: 100%;
+  padding: 8px 16px;
+  border-left: 6px solid #18425a;
+  color: #18425a;
+  font-size: 8pt;
+  font-weight: 300;
+  -webkit-transition: font .1s ease-in-out, color .1s ease-in-out;
+  transition: font .1s ease-in-out, color .1s ease-in-out;
+}
+
+.nav-elem:hover {
+  color: #18425a;
+  font-size: 24pt !important;
+  -webkit-transition: font .25s ease-in-out, color .25s ease-in-out;
+  transition: font .25s ease-in-out, color .25s ease-in-out;
+}
+
+.nav-elem:hover {
+  opacity: 1 !important;
+}
+
+.nav-elem span:first-child {
+  display: inline;
+}
+
+.nav-elem span:last-child {
+  display: none;
+}
+
+.nav-elem:hover span:first-child {
+  display: none;
+}
+
+.nav-elem:hover span:last-child {
+  display: inline;
+}
+
+.timeline {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  margin-top: 24px;
+}
+
+.timeline-line {
+  position: relative;
+  display: flex;
+}
+
+.timeline-line:after {
+  position: absolute;
+  left: 131px;
+  content: ' ';
+  width: 2px;
+  height: 100%;
+  margin-right: 16px;
+  background: #3d7da3;
+  border-radius: 100px;
+}
+
+.timeline-elems {
+  display: flex;
+  flex-direction: column;
+  justify-content: left;
+}
+
+.timeline-elem {
+  position: relative;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: left;
+  margin-bottom: 32px;
+}
+
+.timeline-elem-date {
+  z-index: 1;
+  min-width: 100px;
+  max-width: 100px;
+  color: #3d7da3;
+  font-size: 14pt;
+  font-weight: 300;
+  text-align: right;
+}
+
+.timeline-elem-dot {
+  margin-left: 20px;
+  background: #3d7da3;
+  min-width: 16px;
+  min-height: 16px;
+  max-width: 16px;
+  max-height: 16px;
+  border-radius: 100%;
+  border: 4px white solid;
+}
+
+.timeline-elem-label {
+  z-index: 3;
+  width: 100%;
+  padding-left: 20px;
+  color: #3d7da3;
+  font-size: 14pt;
+  font-weight: 300;
+}
+
+.timeline-elem-label strong {
+  display: block;
+  color: #18425a;
+  font-size: 28pt;
+}
+
+.timeline-elem-bg-img {
+  z-index: 2;
+  position: absolute;
+  top: -60px;
+  left: 25px;
+  opacity: 0;
+  pointer-events: none;
+
+  -webkit-transition: opacity .25s ease-in-out, transform .15s ease-in-out;
+  transition: opacity .25s ease-in-out, transform .15s ease-in-out;
+}
+
+.timeline-elem:hover .timeline-elem-bg-img {
+  opacity: 1;
+}
+
+.timeline-elem-bg-img img {
+  -webkit-transition: transform .15s ease-in-out;
+  transition: transform .15s ease-in-out;
+}
+
+.timeline-elem:hover .timeline-elem-label {
+  color: white;
+}
+
+.timeline-elem:hover .timeline-elem-label strong {
+  color: white;
+}
+
+.timeline-elem-bg-img img {
+
+}
+
+.timeline-elem-separator {
+  z-index: 1;
+  padding-top: 4px;
+  padding-bottom: 8px;
+  margin-left: -19px;
+  margin-bottom: 32px;
+  background: white;
+}
+
+.timeline-elem-separator-dot {
+  background: #3d7da3;
+  margin-top: 4px;
+  margin-left: 149px;
+  min-width: 4px;
+  min-height: 4px;
+  max-width: 4px;
+  max-height: 4px;
+  border-radius: 100px;
+}

@@ -1,0 +1,28 @@
+<svg class="church-icon" data-name="Church Icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 204.34 204.98">
+  <title>Church Icon</title>
+  <g>
+    <path d="M96.65,123h8v5h20V101.73a10,10,0,0,0-20,0V120h-8Zm11-21.28a7,7,0,0,1,14,0V125h-14Z" style="fill: #18425a"/>
+    <polygon points="126.65 35.01 126.65 27.01 122.65 27.01 122.65 35.01 113.65 35.01 113.65 39.01 122.65 39.01 122.65 59.01 126.65 59.01 126.65 39.01 134.65 39.01 134.65 35.01 126.65 35.01" style="fill: #d9dcd6"/>
+    <path d="M129.65,32V24h-10v8h-8.78V42h8.78V62h10V42h8V32Zm5,7h-8V59h-4V39h-9V35h9V27h4v8h8Z" style="fill: #18425a"/>
+    <g>
+      <polygon points="100.65 28.56 100.65 60.01 100.65 85.01 97.65 85.01 97.65 63.55 58.65 88.35 58.65 80.36 55.15 76.51 51.65 80.36 51.65 110.01 69.65 110.01 69.65 163.01 77.65 163.01 77.65 166.01 69.65 166.01 69.65 191.01 66.65 191.01 66.65 133.01 58.65 133.01 58.65 130.01 66.65 130.01 66.65 113.01 50.65 113.01 45.5 113.01 45.5 116.86 6.65 116.86 6.65 120.01 14.65 120.01 14.65 123.01 6.65 123.01 6.65 163.01 14.65 163.01 14.65 166.01 6.65 166.01 6.65 198.01 141 198.01 141 102.36 148.65 102.36 148.65 61.78 148.65 61.7 148.65 28.58 124.1 8.34 100.65 28.56" style="fill: none"/>
+      <polygon points="45.5 110.01 45.5 106.11 0 106.11 0 116.86 3.65 116.86 3.65 110.01 45.5 110.01" style="fill: #d9dcd6"/>
+      <rect x="6.65" y="113.01" width="38.85" height="3.85" style="fill: #d9dcd6"/>
+      <rect x="141" y="102.36" width="7.65" height="95.65" style="fill: #d9dcd6"/>
+      <path d="M151.67,198h0V63.48h0V60h0v0h0l0-.05V27.17L124.06,4.42,97.65,27.19V60.1l-36,22.79V79.23L55.15,72l-6.5,7.27V110h-45v91h148Zm-3-136.3V198H6.65V166h8v-3h-8V123h8v-3h-8v-7h60v17h-8v3h8v58h3V166h8v-3h-8V110h-18V80.35l3.5-3.84,3.5,3.84v8l39-24.8V85h3V28.56L124.1,8.34l24.55,20.24Z" style="fill: #18425a"/>
+      <polygon points="151.65 102.36 151.65 198.01 151.67 198.01 151.67 201.01 141 201.01 141 204.98 158.33 204.98 158.33 102.36 151.65 102.36" style="fill: #d9dcd6"/>
+    </g>
+    <rect x="22.65" y="183.01" width="17" height="3" style="fill: #18425a"/>
+    <path d="M135.65,169v-6.88a20,20,0,0,0-40,0V191h40V172m-37-9.88a17,17,0,0,1,34,0V188h-34Z" style="fill: #18425a"/>
+    <path d="M40.65,172h9v-3h-9V152.14a10,10,0,0,0-20,0V178h20Zm-3,3h-14V152.14a7,7,0,0,1,14,0Z" style="fill: #18425a"/>
+    <path class="ray ray-9" d="M158.1,72.86l10.13,13.38" transform="translate(0 -0.13)" style="stroke: #18425a;stroke-miterlimit: 10;stroke-width: 3px"/>
+    <path class="ray ray-8" d="M159.48,59.36l17.13,4.75" transform="translate(0 -0.13)" style="stroke: #18425a;stroke-miterlimit: 10;stroke-width: 3px"/>
+    <path class="ray ray-7" d="M157.23,41.74,200.1,23.36" transform="translate(0 -0.13)" style="stroke: #18425a;stroke-miterlimit: 10;stroke-width: 3px"/>
+    <path class="ray ray-6" d="M152.23,18.24l11-9.75" transform="translate(0 -0.13)" style="stroke: #18425a;stroke-miterlimit: 10;stroke-width: 3px"/>
+    <path class="ray ray-5" d="M134.23,6.11,136.1.61" transform="translate(0 -0.13)" style="stroke: #18425a;stroke-miterlimit: 10;stroke-width: 3px"/>
+    <path class="ray ray-4" d="M108.73,5.11,105,1.24" transform="translate(0 -0.13)" style="stroke: #18425a;stroke-miterlimit: 10;stroke-width: 3px"/>
+    <path class="ray ray-3" d="M92.23,18.11l-14.12-9" transform="translate(0 -0.13)" style="stroke: #18425a;stroke-miterlimit: 10;stroke-width: 3px"/>
+    <path class="ray ray-2" d="M85.73,41.24,42.35,24" transform="translate(0 -0.13)" style="stroke: #18425a;stroke-miterlimit: 10;stroke-width: 3px"/>
+    <path class="ray ray-1" d="M80.85,57.74,66,60.24" transform="translate(0 -0.13)" style="stroke: #18425a;stroke-miterlimit: 10;stroke-width: 3px"/>
+  </g>
+</svg>

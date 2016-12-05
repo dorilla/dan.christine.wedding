@@ -1,0 +1,75 @@
+@media (max-width: 500px) {
+  .wedding-details-heading {
+    font-size: 24pt;
+  }
+  .wedding-details-ceremony {
+    margin-top: 32px;
+  }
+  .wedding-details-ceremony,
+  .wedding-details-reception {
+    display: block;
+    padding: 0;
+  }
+
+  .ceremony-content,
+  .reception-content {
+    width: 100%;
+    margin-left: 0;
+    text-align: center;
+  }
+  .church-svg,
+  .hotel-svg {
+    text-align: center;
+    padding-left: 30px;
+  }
+  .ceremony-details,
+  .reception-details {
+    font-size: 14pt;
+    line-height: 18pt;
+  }
+  .ceremony-heading,
+  .reception-heading {
+    font-size: 20pt;
+    line-height: 24pt;
+  }
+
+  .wedding-details-narrative {
+    font-size: 12pt;
+  }
+
+  .timeline-elem-label strong {
+    font-size: 20pt;
+  }
+
+  .wedding-details-wrapper__with-separator:before {
+    display: none;
+  }
+}
+
+@media (min-width: 501px) and (max-width: 768px) {
+  .wedding-details-heading {
+    font-size: 32pt;
+  }
+  .wedding-details-ceremony,
+  .wedding-details-reception {
+    padding: 0;
+  }
+
+  .ceremony-content,
+  .reception-content {
+    width: 350px;
+  }
+  .ceremony-heading,
+  .reception-heading {
+    font-size: 24pt;
+    line-height: 28pt;
+  }
+
+  .timeline-elem-label strong {
+    font-size: 24pt;
+  }
+
+  .wedding-details-wrapper__with-separator:before {
+    display: none;
+  }
+}

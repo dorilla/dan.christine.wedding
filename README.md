@@ -10,11 +10,11 @@
 - https://github.com/scottcorgan/pushstate-server
   - Serve the compiled site in development
 
+## Website possible by
+*coming soon*
+
 ## Usage
 ```
 npm install
 npm start
 ```
-
-## Credits
-*coming soon*

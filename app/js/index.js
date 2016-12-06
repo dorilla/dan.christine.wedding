@@ -62,6 +62,8 @@ $(document).ready(function() {
   setupMapEvents();
   initMap();
 
+  $('.nav:not(.nav__original)').html($('.nav__original').html());
+
   setTimeout(function() {
     $('.opening-banner').addClass('fade-in');
   }, 300);
@@ -73,61 +75,22 @@ $(document).ready(function() {
     setTimeout(function() { runDiscoBallShineAnimation() }, 250);
     runDiscoBallAnimation();
     runDiscoBallStarAnimation();
+    parseOriginalUrl();
   }, 100);
 
   $(window).on('resize', function() {
     repositionLetterHead();
   });
 
+  window.onpopstate = popStateFunc;
+
   scrollHandler();
   $(window).on('scroll', $.throttle( 10, scrollHandler ));
   $(window).on('scroll', $.throttle( 250, throttledScrollHandler ));
 
-  $(window).on('mousemove', $.throttle(100, function(e) {
-    var maxWidth      = $(window).width() / 2.5,
-        minFontSize   = 8,
-        maxFontSize   = 14,
-        fontSizeDelta = maxFontSize - minFontSize;
+  $(window).on('mousemove', $.throttle(100, mousemoveHandler));
 
-    if (e.pageX > maxWidth) {
-      $('.nav-elem').css({fontSize: minFontSize + 'pt'});
-      $('.nav-elems').css({opacity: 0});
-      $('.nav-header').css({opacity: 1, fontSize: '16pt'});
-      return;
-    }
-
-    var rate = e.pageX  / maxWidth;
-
-    $('.nav-elem').css({
-      fontSize: maxFontSize - (fontSizeDelta * rate) + 'pt',
-    });
-    $('.nav-elems').css({
-      opacity: Math.max(1-rate, 0)
-    });
-    $('.nav-header').css({
-      fontSize: 18 - ((18-16) * rate) + 'pt',
-      opacity: rate
-    });
-  }));
-
-  var skewImg = function(x, y, w, h, o) {
-    var xr = (x - w / 2) / (w / 40);
-    var xr2 = x / (w / 20) * 2.5 + 10;
-    var yr = -((y - h / 2) / (h / 20));
-    return "rotateY(" + xr + "deg) rotateX(" + yr + "deg) translateX(" + xr2 + "px) translateY(" + -yr * 4 + "px)";
-  };
-
-  $('.timeline-elem-label').on('mousemove', $.throttle(100, function(e) {
-    var img = $(this).parent().find('.timeline-elem-bg-img img'),
-        x   = e.pageX - $(this).offset().left,
-        y   = e.pageY - $(this).offset().top,
-        w   = $(this).width(),
-        h   = $(this).height();
-
-    img.css({
-      transform: skewImg(x, y, w, h)
-    })
-  }));
+  setupTimelineHoverAnimations();
 });
 
 /*
@@ -525,8 +488,48 @@ var scrollHandler = function() {
  * @description Throttled on scroll handler
  */
 var throttledScrollHandler = function() {
-  scrollWeddingDetails();
+  scrollInWedding();
+  scrollInAbout();
+  scrollInWeddingParty();
   scrollMap();
+};
+
+/*
+ * @description Throttled mousemove handler
+ */
+var mousemoveHandler = function(e) {
+  mousemoveNav(e);
+};
+
+/*
+ * @description As the mouse moves closer to the nav, make it bigger
+ * starts at the vertical center of the window
+ */
+mousemoveNav = function(e) {
+  var maxWidth      = $(window).width() / 2.5,
+      minFontSize   = 8,
+      maxFontSize   = 14,
+      fontSizeDelta = maxFontSize - minFontSize;
+
+  if (e.pageX > maxWidth) {
+    $('.nav-elem').css({fontSize: minFontSize + 'pt'});
+    $('.nav-elems').css({opacity: 0});
+    $('.nav-header').css({opacity: 1, fontSize: '16pt'});
+    return;
+  }
+
+  var rate = e.pageX  / maxWidth;
+
+  $('.nav-elem').css({
+    fontSize: maxFontSize - (fontSizeDelta * rate) + 'pt',
+  });
+  $('.nav-elems').css({
+    opacity: Math.max(1-rate, 0)
+  });
+  $('.nav-header').css({
+    fontSize: 18 - ((18-16) * rate) + 'pt',
+    opacity: rate
+  });
 };
 
 /*
@@ -555,14 +558,66 @@ var scrollOpeningBanner = function() {
 /*
  * @description Make the wedding details visible
  */
-var scrollWeddingDetails = function() {
-  if ($('.wedding-details-wrapper').hasClass('visible')) return;
-  var scrollTop = $(window).scrollTop();
+var scrollInSection = function(selector, transitionClasses) {
+  var scrollTop           = $(window).scrollTop(),
+      wrapper             = $(selector),
+      top                 = wrapper.offset().top - 100,
+      bottom              = top + wrapper.outerHeight() + 100,
+      reachedTopThreshold = scrollTop >= (wrapper.offset().top - ($(window).height() / 1.5)),
+      notVisible          = scrollTop > bottom || scrollTop + $(window).height() <= top;
 
   // when $('.wedding-details-wrapper')'s top pixel reaches half of the window
-  if (scrollTop >= ($('.wedding-details-wrapper').offset().top - ($(window).height() / 1.5))) {
-    $('.wedding-details-wrapper').addClass('visible');
+  if (!wrapper.hasClass('visible') && reachedTopThreshold) {
+    $(transitionClasses.join(', ')).removeClass('no-transition');
+    wrapper.addClass('visible');
+  } else {
+    if (wrapper.hasClass('visible') && notVisible) {
+      $(transitionClasses.join(', ')).addClass('no-transition');
+      wrapper.removeClass('visible');
+    }
   }
+};
+
+/*
+ * @description Make the wedding details visible
+ */
+var scrollInWedding = function() {
+  var transitionClasses = [
+    '.wedding-details-heading',
+    '.when-month',
+    '.when-day',
+    '.when-year',
+    '.wedding-details-ceremony',
+    '.wedding-details-reception'
+  ]
+  scrollInSection('#wedding.wedding-details-wrapper', transitionClasses);
+};
+
+/*
+ * @description Make the About visible
+ */
+var scrollInAbout = function() {
+  var transitionClasses = [
+    '.wedding-details-heading',
+    '.wedding-details-narrative',
+    '.timeline-line',
+    '.timeline-elem-date',
+    '.timeline-elem-dot',
+    '.timeline-elem-label',
+    '.timeline-elem-bg-img img',
+    '.timeline-elem-separator'
+  ]
+  scrollInSection('#about.wedding-details-wrapper', transitionClasses);
+};
+
+/*
+ * @description Make the wedding party section visible
+ */
+var scrollInWeddingParty = function() {
+  var transitionClasses = [
+    '.wedding-details-heading',
+  ]
+  scrollInSection('#wedding-party.wedding-details-wrapper', transitionClasses);
 };
 
 /*
@@ -744,8 +799,18 @@ var scrollMap = function() {
  * @description initialze the map event handlers
  */
 var setupMapEvents = function() {
-  $('.gmap-wrapper').on('click', expandMap);
-  $('.gmap-expanded-close').on('click', collapseMap);
+  $('.gmap-wrapper').on('click', function() {
+    transitionTo('explore');
+  });
+  $('.gmap-expanded-close').on('click', function(e) {
+    if (window.history.state) {
+      window.history.back();
+    } else {
+      collapseMap();
+      window.history.pushState(null, null, '/');
+    }
+    e.stopPropagation();
+  });
 };
 
 /*
@@ -771,8 +836,10 @@ var expandMap = function(e) {
  * @description collapse the map from fullscreen
  */
 var collapseMap = function(e) {
-  e.preventDefault();
+  if (e) e.preventDefault();
   if (!$('.gmap-wrapper').hasClass('expanded')) return;
+  if (window.expandMapOriginalScrollTop !== 0)
+    $('html, body').animate({ scrollTop: window.expandMapOriginalScrollTop }, 250);
   $('.gmap-wrapper').css({pointerEvents: 'none'});
   $('html, body').removeClass('no-scroll');
   $('.gmap-wrapper').removeClass('expanded');
@@ -780,11 +847,111 @@ var collapseMap = function(e) {
   $('#gmap').removeAttr('style');
 
   setTimeout(function() {
-    $('html, body').animate({ scrollTop: window.expandMapOriginalScrollTop }, 250);
     google.maps.event.trigger(map, 'resize');
     recenterMap();
   }, 250);
   return false;
+};
+
+/*
+ * @description jump to a specific section of the page
+ */
+var jumpTo = function(section, scrollSpeed) {
+  scrollSpeed = scrollSpeed || 500;
+
+  if (section === 'explore') {
+    expandMap();
+    return;
+  }
+
+  if ($('.gmap-wrapper').hasClass('expanded')) {
+    collapseMap();
+    if (window.expandMapOriginalScrollTop === 0) {
+      $('html, body').animate({
+        scrollTop: $('#' + section).offset().top
+      }, scrollSpeed);
+    }
+  } else {
+    $('html, body').animate({
+      scrollTop: $('#' + section).offset().top
+    }, scrollSpeed);
+  }
+};
+
+/*
+ * @description parses the url and segments the path into an array
+ */
+var getPathContents = function() {
+  var parser = document.createElement('a');
+  parser.href = window.location.href;
+  var path = parser.pathname;
+  if (path[0] === '/') {
+    path = path.substring(1);
+  }
+  if (path[path.length - 1] === '/') {
+    path = path.substring(0, path.length - 1);
+  }
+  return path.split('/');
+}
+
+/*
+ * @description parses the url to get what part of the page we should jump to
+ *    should only be called once in the beginning
+ */
+var parseOriginalUrl = function() {
+  var path = getPathContents();
+  if (path && path[0] && path[0].length > 0) {
+    transitionTo(path[0], 1000);
+  }
+};
+
+/*
+ * @description on popstate, run this
+ */
+var popStateFunc = function(e) {
+  if (e && e.state && e.state.section && e.state.section.length > 0) {
+    transitionTo(e.state.section);
+  }
+};
+
+/*
+ * @description calls to transition to a specific section of the page
+ *     utilizes the the web history API
+ */
+var transitionTo = function(section, scrollSpeed) {
+  var path = getPathContents();
+  if (section !== path[0]) {
+    history.pushState({
+      section: section
+    }, section, section);
+  }
+
+  jumpTo(section, scrollSpeed);
+};
+
+/*
+ * @description center the preloader
+ * logic stolen from http://actnormal.co/products/ :P
+ */
+var setupTimelineHoverAnimations = function() {
+  var skewImg = function(x, y, w, h, o) {
+    var xr = (x - w / 2) / (w / 40);
+    var xr2 = x / (w / 20) * 2.5 + 10;
+    var yr = -((y - h / 2) / (h / 20));
+    return "rotateY(" + xr + "deg) rotateX(" + yr + "deg) translateX(" + xr2 + "px) translateY(" + -yr * 4 + "px)";
+  };
+
+  $('.timeline-elem-label').on('mousemove', $.throttle(100, function(e) {
+    var img = $(this).parent().find('.timeline-elem-bg-img img'),
+        x   = e.pageX - $(this).offset().left,
+        y   = e.pageY - $(this).offset().top,
+        w   = $(this).width(),
+        h   = $(this).height();
+
+    img.css({
+      transform: skewImg(x, y, w, h)
+    })
+  }));
 };
 
 // First thing that happens

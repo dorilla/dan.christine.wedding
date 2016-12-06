@@ -44,6 +44,11 @@
   .wedding-details-wrapper__with-separator:before {
     display: none;
   }
+
+  .gmap-overlay-text {
+    font-size: 40pt;
+    letter-spacing: -1px;
+  }
 }
 
 @media (min-width: 501px) and (max-width: 768px) {
@@ -71,5 +76,10 @@
 
   .wedding-details-wrapper__with-separator:before {
     display: none;
+  }
+
+  .gmap-overlay-text {
+    font-size: 52pt;
+    letter-spacing: -2px;
   }
 }

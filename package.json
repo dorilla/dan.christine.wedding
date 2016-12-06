@@ -3,9 +3,6 @@
   "version": "1.0.0",
   "description": "",
   "main": "Brocfile.js",
-  "dependencies": {
-    "broccoli": "^1.1.0"
-  },
   "devDependencies": {
     "broccoli": "^1.1.0",
     "broccoli-asset-rev": "^2.5.0",
@@ -13,12 +10,15 @@
     "broccoli-funnel": "^1.1.0",
     "broccoli-merge-trees": "^1.2.1",
     "broccoli-sass": "^0.7.0",
-    "broccoli-uglify-sourcemap": "^1.4.2"
+    "broccoli-uglify-sourcemap": "^1.4.2",
+    "chokidar": "^1.6.1",
+    "lodash.debounce": "^4.0.8",
+    "pushstate-server": "^2.1.0"
   },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "rm -rf dist && broccoli serve",
-    "deploy": "rm -rf dist && BROCCOLI_ENV=production broccoli build dist && ssh root@162.243.90.183 'rm -rf /var/www/html/web' && ssh root@162.243.90.183 'mkdir /var/www/html/web' && scp -r dist/* root@162.243.90.183:/var/www/html/web"
+    "start": "node server.js",
+    "deploy": "rm -rf dist && BROCCOLI_ENV=production broccoli build dist && ssh root@dan.christine.wedding 'rm -rf /var/www/html/web' && ssh root@dan.christine.wedding 'mkdir /var/www/html/web' && scp -r dist/* root@dan.christine.wedding:/var/www/html/web"
   },
   "author": "",
   "license": "ISC"

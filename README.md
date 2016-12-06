@@ -1,4 +1,4 @@
-# Code responseible for http://dan.christine.wedding
+# Code responsible for http://dan.christine.wedding
 
 ## Build scripts possible by
 - https://www.npmjs.com/

@@ -91,6 +91,7 @@ $(document).ready(function() {
   $(window).on('mousemove', $.throttle(100, mousemoveHandler));
 
   setupTimelineHoverAnimations();
+  setupWeddingPartyAnimations();
 });
 
 /*
@@ -929,19 +930,33 @@ var transitionTo = function(section, scrollSpeed) {
   jumpTo(section, scrollSpeed);
 };
 
+var skewImg1 = function(x, y, w, h, o) {
+  var xr = (x - w / 2) / (w / 40);
+  var xr2 = x / (w / 20) * 2.5 + 10;
+  var yr = -((y - h / 2) / (h / 20));
+  return "rotateY(" + xr + "deg) rotateX(" + yr + "deg) translateX(" + xr2 + "px) translateY(" + -yr * 4 + "px)";
+};
+
+var skewImg2 = function(x, y, w, h, o) {
+  var xr = (x - x / 2) / (w / 100);
+  var xr2 = x / (w / 20) * 2.5 + 10;
+  var yr = -((y - h / 2) / (h / 10));
+  return "translateX(" + xr + "px) translateY(" + -yr * 4 + "px)";
+};
+
+var skewImg3 = function(x, y, w, h, o) {
+  var xr = (x - w / 2) / (w / 40);
+  var xr2 = x / (w / 20) * 2.5 + 10;
+  var yr = -((y - h / 2) / (h / 20));
+  return "translateX(" + xr + "px) translateY(" + -yr * 4 + "px)";
+};
+
 /*
- * @description center the preloader
+ * @description on hover timeline elem
  * logic stolen from http://actnormal.co/products/ :P
  */
 var setupTimelineHoverAnimations = function() {
-  var skewImg = function(x, y, w, h, o) {
-    var xr = (x - w / 2) / (w / 40);
-    var xr2 = x / (w / 20) * 2.5 + 10;
-    var yr = -((y - h / 2) / (h / 20));
-    return "rotateY(" + xr + "deg) rotateX(" + yr + "deg) translateX(" + xr2 + "px) translateY(" + -yr * 4 + "px)";
-  };
-
-  $('.timeline-elem-label').on('mousemove', $.throttle(100, function(e) {
+  $('.timeline-elem-label').on('mousemove', $.throttle(5, function(e) {
     var img = $(this).parent().find('.timeline-elem-bg-img img'),
         x   = e.pageX - $(this).offset().left,
         y   = e.pageY - $(this).offset().top,
@@ -949,8 +964,52 @@ var setupTimelineHoverAnimations = function() {
         h   = $(this).height();
 
     img.css({
-      transform: skewImg(x, y, w, h)
-    })
+      transform: skewImg1(x, y, w, h)
+    });
+  }));
+};
+
+/*
+ * @description on hover wedding party elem
+ * logic stolen from http://actnormal.co/products/ :P
+ */
+var setupWeddingPartyAnimations = function() {
+  $('.wedding-party-member').on('mousemove', $.throttle(100, function(e) {
+    var img = $(this).find('img'),
+        x   = e.pageX - $(this).offset().left,
+        y   = e.pageY - $(this).offset().top,
+        w   = $(this).width(),
+        h   = $(this).height();
+
+    $('.wedding-party-member img').css({
+      left: 0,
+      transform: "rotate(0) translate(0)"
+    });
+    $('.wedding-party-member .wedding-party-label').css({
+      left: 0,
+      transform: "rotate(0) translate(0)"
+    });
+
+    img.css({
+      // left: -35,
+      transform: skewImg3(x, y, w, h)
+    });
+    $(this).find('.wedding-party-label').css({
+      left: -5,
+      transform: skewImg2(x, y, w, h)
+    });
+  }));
+
+  $('.wedding-party-member').on('mouseleave', $.debounce(100, function(e) {
+    var img = $(this).find('img');
+    img.css({
+      left: 0,
+      transform: "rotate(0) translate(0)"
+    });
+    $(this).find('.wedding-party-label').css({
+      left: 0,
+      transform: "rotate(0) translate(0)"
+    });
   }));
 };
 

@@ -7,6 +7,9 @@ $blue: #3d7da3;
 $gray-1: #9bacb6;
 $gray-2: #d9dcd6;
 
+$easeOutSine: cubic-bezier(0.39, 0.575, 0.565, 1);
+$easeOutQuad: cubic-bezier(0.25, 0.46, 0.45, 0.94);
+
 @mixin transition($transition...) {
   -webkit-transition: $transition;
   transition:         $transition;
@@ -588,8 +591,7 @@ body {
 
   opacity: 0;
   transform: translateX(50px) translateY(50px);
-  @include transition(transform .5s ease-out, opacity .5s ease-out);
-  @include transition-delay(1.25s);
+  @include transition(transform .5s ease-out 1.25s, opacity .5s ease-out 1.25s, color .25s ease-out 0s);
 }
 
 .wedding-details-wrapper.visible .timeline-elem-label {
@@ -601,6 +603,7 @@ body {
   display: block;
   color: $dark-blue;
   font-size: 28pt;
+  @include transition(color .25s ease-out);
 }
 
 .timeline-elem-bg-img {
@@ -614,7 +617,7 @@ body {
   @include transition(opacity .25s ease-in-out, transform .15s ease-in-out);
 }
 
-.timeline-elem:hover .timeline-elem-bg-img {
+.timeline-elem-label:hover + .timeline-elem-bg-img {
   opacity: 1;
 }
 
@@ -622,11 +625,11 @@ body {
   @include transition(transform .15s ease-in-out);
 }
 
-.timeline-elem:hover .timeline-elem-label {
+.timeline-elem-label:hover {
   color: white;
 }
 
-.timeline-elem:hover .timeline-elem-label strong {
+.timeline-elem-label:hover strong {
   color: white;
 }
 
@@ -668,6 +671,79 @@ body {
   max-width: 4px;
   max-height: 4px;
   border-radius: 100px;
+}
+
+.wedding-party-members {
+  width: 1300px;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-content: center;
+  flex-wrap: wrap;
+}
+
+.wedding-party-member {
+  position: relative;
+  margin: 16px;
+  width: 375px;
+  height: 187.5px;
+  opacity: 0;
+  transform: translateY(50px);
+
+  @include transition(transform .5s $easeOutQuad, opacity .5s $easeOutQuad);
+
+  .wedding-party-label,
+  img {
+    @include transition(transform .2s linear);
+  }
+
+  &:nth-child(1) {
+    @include transition-delay(.25s);
+  }
+  &:nth-child(2) {
+    @include transition-delay(.45s);
+  }
+  &:nth-child(3) {
+    @include transition-delay(.65s);
+  }
+  &:nth-child(4) {
+    @include transition-delay(.85s);
+  }
+  &:nth-child(5) {
+    @include transition-delay(1.05s);
+  }
+  &:nth-child(6) {
+    @include transition-delay(1.25s);
+  }
+}
+
+.visible .wedding-party-member {
+  opacity: 1;
+  transform: translate(0);
+}
+
+.wedding-party-label {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  margin: 16px;
+  color: white;
+  font-size: 16pt;
+  font-weight: 300;
+
+  strong {
+    display: block;
+    font-size: 24pt;
+    font-weight: 600;
+  }
+}
+
+.wedding-party-member img {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 375px;
 }
 
 // needs to be last to override styles

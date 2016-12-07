@@ -83,3 +83,43 @@
     letter-spacing: -2px;
   }
 }
+
+@media (max-width: 1300px) {
+  .wedding-party-members {
+    width: 900px;
+  }
+}
+
+@media (max-width: 900px) {
+  .wedding-party-members {
+    width: 632px;
+  }
+
+  .wedding-party-member {
+    margin: 8px;
+    width: 300px;
+    height: 150px;
+  }
+
+  .wedding-party-member img {
+    width: 300px;
+    height: 150px;
+  }
+}
+
+@media (max-width: 632px) {
+  .wedding-party-members {
+    width: 316px;
+  }
+
+  .wedding-party-member {
+    margin: 8px;
+    width: 300px;
+    height: 150px;
+  }
+
+  .wedding-party-member img {
+    width: 300px;
+    height: 150px;
+  }
+}
